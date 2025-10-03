@@ -62,5 +62,7 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake `
             ..
           cmake --build . --parallel --config ${{ matrix.build_type }}
-          ./${{ matrix.build_type }}/bin/highs --solver=hipo ../check/instances/flugpl.mps
+          ./${{ matrix.build_type }}/bin/highs `
+            --options_file ../check/hipo_test_option_files/hipo_options_0 `
+            ../check/instances/flugpl.mps
           ctest -C ${{ matrix.build_type }} --parallel --timeout 300 --output-on-failure --quiet --no-tests=error
