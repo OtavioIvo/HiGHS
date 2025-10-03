@@ -39,7 +39,6 @@ jobs:
             -DMETIS_ROOT=installs \
             ..
           cmake --build . --parallel
-          ./bin/highs --solver=hipo ../check/instances/afiro.mps
           ctest --parallel --timeout 300 --output-on-failure --quiet --no-tests=error
   test-win:
     name: hipo windows-latest CMAKE_BUILD_TYPE=${{ matrix.build_type }} ALL_TESTS=${{ matrix.all_tests }}
@@ -63,6 +62,5 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake `
             ..
           cmake --build . --parallel --config ${{ matrix.build_type }}
-          ./${{ matrix.build_type }}/bin/highs --solver=hipo ../check/instances/afiro.mps
-          ./${{ matrix.build_type }}/bin/unit_tests -d yes -a
-          ctest -C ${{ matrix.build_type }} --parallel --timeout 300 --output-on-failure --quiet  --no-tests=error
+          ./${{ matrix.build_type }}/bin/highs --solver=hipo ../check/instances/flugpl.mps
+          ctest -C ${{ matrix.build_type }} --parallel --timeout 300 --output-on-failure --quiet --no-tests=error
