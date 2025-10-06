@@ -1545,8 +1545,14 @@ class HighsOptions : public HighsOptionsStruct {
 
     // Set up the log_options aliases
     log_options.clear();
-    log_options.log_stream =
-        log_file.empty() ? nullptr : fopen(log_file.c_str(), "w");
+    if(log_file.empty())
+    {
+        log_options.log_stream = nullptr;
+    }
+   else 
+    {
+        fopen_s(&log_options.log_stream, log_file.c_str(), "w");
+    }
     log_options.output_flag = &output_flag;
     log_options.log_to_console = &log_to_console;
     log_options.log_dev_level = &log_dev_level;
