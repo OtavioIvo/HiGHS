@@ -62,8 +62,7 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake `
             ..
           cmake --build . --parallel --config ${{ matrix.build_type }}
-      - shell: cmd
-        run: |
+      - run: |
           build/${{ matrix.build_type }}/bin/highs --solver=hipo check/instances/flugpl.mps
       - run: |
           cd build
