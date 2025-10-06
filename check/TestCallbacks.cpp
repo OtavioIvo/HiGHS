@@ -505,6 +505,8 @@ static void runMipUserSolutionTest(
   assert(model.size() == require_origin.size());
   Highs highs;
   highs.setOptionValue("output_flag", dev_run);
+  highs.setOptionValue("parallel", "off");
+  highs.setOptionValue("threads", 1);
   highs.setOptionValue("log_dev_level", 5);
   highs.setOptionValue("mip_rel_gap", 0);
   HighsInt from_model = 0;
